@@ -1,4 +1,4 @@
-package p20201020Ã¥°ü¸®;
+package p20201020ì±…ê´€ë¦¬;
 
 import java.sql.*;
 
@@ -9,32 +9,32 @@ public class MyDb {
 	static int book_id, price;
 	
 	public MyDb() {
-		// 1. JDBC µå¶óÀÌ¹ö¸¦ ÀûÀç
+		// 1. JDBC ë“œë¼ì´ë²„ë¥¼ ì ì¬
 		System.out.println("------------------------------");
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("µå¶óÀÌ¹ö ÀûÀç ¼º°ø");
+			System.out.println("ë“œë¼ì´ë²„ ì ì¬ ì„±ê³µ");
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			System.out.println("ë“œë¼ì´ë²„ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 			
-		// 2. DB ¿¬°á
-		String url		= "jdnc:oracle:thin:@net.yju.ac.kr:1521:orcl";	// oracle DB Á¢¼ÓÀ» À§ÇÑ url
-		String id 		= "s1701052";									// oracle DB Á¢¼ÓÀ» À§ÇÑ ¾ÆÀÌµğ
-		String password = "p1701052";									// oracle DB Á¢¼ÓÀ» À§ÇÑ ÆĞ½º¿öµå
+		// 2. DB ì—°ê²°
+		String url	= "";	// oracle DB ì ‘ì†ì„ ìœ„í•œ url
+		String id 	= "";	// oracle DB ì ‘ì†ì„ ìœ„í•œ ì•„ì´ë””
+		String password = "";	// oracle DB ì ‘ì†ì„ ìœ„í•œ íŒ¨ìŠ¤ì›Œë“œ
 		con 	= null;
 		
 		try {
 			con = DriverManager.getConnection(url , id, password);
-			System.out.println("¿¬°á ¼º°ø");
+			System.out.println("ì—°ê²° ì„±ê³µ");
 		} catch (SQLException e) {
-			System.out.println("¿¬°á ¿À·ù");
+			System.out.println("ì—°ê²° ì˜¤ë¥˜");
 		}
 
 		System.out.println("------------------------------");
 	}
 	
-	// Á¶È¸
+	// ì¡°íšŒ
 	public static void SearchBook () {
 		String bNum = MyFrame.tfs[0].getText();
 
@@ -53,13 +53,13 @@ public class MyDb {
 			 }
 			 
 		} catch (Exception e) {
-			System.out.println("Á¶È¸ Áß ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+			System.out.println("ì¡°íšŒ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
 	
 	
-	// »ğÀÔ
+	// ì‚½ì…
 	public static void InsertBook () {
 		String bNum = MyFrame.tfs[0].getText();
 		String bTitle= MyFrame.tfs[1].getText();
@@ -73,17 +73,17 @@ public class MyDb {
 			String  sql = "INSERT INTO books(BOOK_ID, TITLE, PUBLISHER, YEAR, PRICE) values"
 				+ "(" + bNum + ", '" + bTitle + "' , '" + bPublisher + "' , '" + bYear + "' ," + bPrice + ")";
 			stmt.executeUpdate(sql);
-			System.out.println("»ğÀÔ¿¡ ¼º°øÇß¼ü´Ï´Ù.");
+			System.out.println("ì‚½ì…ì— ì„±ê³µí–ˆìˆ©ë‹ˆë‹¤.");
 	 
 		} catch (Exception e) {
-			System.out.println("ÀÌ¹Ì ÀÖ´Â Ã¥¹øÈ£ ÀÔ´Ï´Ù.");
+			System.out.println("ì´ë¯¸ ìˆëŠ” ì±…ë²ˆí˜¸ ì…ë‹ˆë‹¤.");
 			System.out.println("------------------------------");
 		}
 
 	}
 	
 	
-	// ¼öÁ¤
+	// ìˆ˜ì •
 	public static void UpdateBook () {
 		String bNum = MyFrame.tfs[0].getText();
 		String bTitle= MyFrame.tfs[1].getText();
@@ -99,17 +99,17 @@ public class MyDb {
 										+ ",year = "+  " '" + bYear + "' " 
 										+ ",price = " + bPrice + "where book_id =" + bNum;
 			stmt.executeUpdate(sql);
-			System.out.println("¼öÁ¤¿¡ ¼º°øÇß¼ü´Ï´Ù.");
+			System.out.println("ìˆ˜ì •ì— ì„±ê³µí–ˆìˆ©ë‹ˆë‹¤.");
 	 
 		} catch (Exception e) {
-			System.out.println("¼öÁ¤ Áß ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+			System.out.println("ìˆ˜ì • ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 			System.out.println("------------------------------");
 		}
 
 	}
 	
 	
-	// »èÁ¦
+	// ì‚­ì œ
 	public static void DeleteBook () {
 		String bNum = MyFrame.tfs[0].getText();
 		String bTitle= MyFrame.tfs[1].getText();
@@ -123,10 +123,10 @@ public class MyDb {
 			String  sql = "delete from books where book_id = " + bNum;
 			
 			stmt.executeUpdate(sql);
-			System.out.println("»èÁ¦¿¡ ¼º°øÇß¼ü´Ï´Ù.");
+			System.out.println("ì‚­ì œì— ì„±ê³µí–ˆìˆ©ë‹ˆë‹¤.");
 	 
 		} catch (Exception e) {
-			System.out.println("»èÁ¦ Áß ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+			System.out.println("ì‚­ì œ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 			System.out.println("------------------------------");
 		}
 
